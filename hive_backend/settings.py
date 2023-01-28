@@ -143,3 +143,9 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+DJOSER={
+    'SERIALIZERS': {
+        'user_create': 'core.serializers.UserCreateSerializer',
+    }
+}
