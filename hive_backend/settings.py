@@ -146,16 +146,16 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    'SEND_ACTIVATION_EMAIL': True,
+    # 'SEND_ACTIVATION_EMAIL': True,
 
     'SERIALIZERS': {
         'user_create': 'core.serializers.UserCreateSerializer',
     }
 }
 
-EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ('MAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ('MAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = os.environ('MAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ('MAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = True
