@@ -11,7 +11,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 # ...
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class DonatorDonateeSerializer(serializers.ModelSerializer):
     pass
 # birth_date
 # account_number
