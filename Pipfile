@@ -8,6 +8,8 @@ django = "*"
 djangorestframework = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
+django-environ = "*"
+python-decouple = "*"
 
 [dev-packages]
 autopep8 = "*"
