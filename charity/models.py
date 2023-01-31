@@ -15,23 +15,20 @@ class Advertisement(models.Model):
     raiser = models.ForeignKey()
     amout = models.CharField()
     collected_amount = models.CharField()
-    pass
-# amount
-# collected amount
-# raiser -> foreignkey: DonatorDonatee
-# title
-# description
-
+   
+    amount = models.FloatField()
+    collected_amount = models.FloatField()
+    raiser = models.ForeignKey(to, on_delete)
 
 class DonatoDonatee(models.Model):
     account_number = models.CharField(max_length=16)
     identity_card_number = models.CharField()
     identity_card_image = models.ImageField()
     identity_card_image2 = models.ImageField()
-    pass
-# birth_date
-# Identity_card_number
-# Identity_card_photo
-# Identity_card_photo1
-# account_number
+
+    birth_date = models.DateField()
+    Identity_card_number = models.CharField(max_length=10)
+    Identity_card_photo = models.ImageField()
+    Identity_card_photo1 = models.ImageField()
+    account_number = models.CharField(max_length=16)
 # user -> content_type: Core_User
