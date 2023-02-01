@@ -9,7 +9,6 @@ class Advertisement(models.Model):
     description = models.TextField(null=True, blank=True)
     amount = models.FloatField()
     collected_amount = models.FloatField()
-    collected_amount = models.FloatField()
 
 
 class DonatorDonate(models.Model):
