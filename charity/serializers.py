@@ -1,13 +1,17 @@
 from rest_framework import serializers
-from charity.models import Advertisement , DonatorDonate
+from charity.models import Advertisement, DonatorDonate
+
 
 class AdvertisementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Advertisement
-        fields = ['raiser' ,'title','description','amount','collected_amount']
+        fields = ['raiser', 'title', 'description',
+                  'amount', 'collected_amount']
 
-class DonatorDonateSerializer(serializers.ModelSerializer):
+
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = DonatorDonate
-        fields = ['donator','account_number']
+        # add all fields included in user profile design
+        fields = ['user', 'account_number']
