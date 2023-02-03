@@ -10,13 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import environ
 from decouple import config
 from datetime import timedelta
 from pathlib import Path
 
-env = environ.Env()
-environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,13 +83,12 @@ WSGI_APPLICATION = 'hive_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'HiveBackend',
+        'NAME': 'hivebackend',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': config('SQL_PASSWORD')
     }
 }
-
 
 
 # Password validation
@@ -165,7 +161,7 @@ DJOSER = {
         'user_create': 'core.serializers.UserCreateSerializer',
     }
 }
-DOMAIN = config('DOMAIN')
+# DOMAIN = config('DOMAIN')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
