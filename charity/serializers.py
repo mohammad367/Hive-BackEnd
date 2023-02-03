@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from charity.models import Advertisement, TestModel, DonatorDonate
+from charity.models import Advertisement, DonatorDonate
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):

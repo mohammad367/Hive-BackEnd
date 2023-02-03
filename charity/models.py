@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 class DonatorDonate(models.Model):
-    donator = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
