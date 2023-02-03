@@ -1,13 +1,14 @@
 from rest_framework import serializers
-from charity.models import Advertisement, DonatorDonate
+from charity.models import Advertisement, TestModel, DonatorDonate
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
+    raiser_id = serializers.IntegerField()
 
     class Meta:
         model = Advertisement
-        fields = ['raiser', 'title', 'description',
-                  'amount', 'collected_amount']
+        fields = ['id', 'raiser_id', 'title',
+                  'description', 'amount', 'collected_amount']
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
