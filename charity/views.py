@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-
-# Create your views here.
+from .models import Advertisement, DonatorDonate
+from .serializers import AdvertisementSerializer, UserProfileSerializer
 
 
 class AdvertisementViewSet(ModelViewSet):
-    pass
+    queryset = Advertisement.objects.all()
+    serializer_class = AdvertisementSerializer
 
 
 class DonatorDonateeViewSet(ModelViewSet):
-    pass
+    queryset = DonatorDonate.objects.all()
+    serializer_class = UserProfileSerializer
