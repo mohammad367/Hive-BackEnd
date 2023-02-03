@@ -13,7 +13,7 @@ class DonatorDonate(models.Model):
     birth_date = models.DateField()
     identity_card_number = models.CharField(max_length=10)
     identity_card_image = models.ImageField(null=True)
-    birth_certificate_image = models.ImageField(null=True)
+    birth_certificate_image = models.ImageField(null=True, blank=True)
 
 
 class Advertisement(models.Model):

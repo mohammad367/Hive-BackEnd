@@ -15,4 +15,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = DonatorDonate
         # add all fields included in user profile design
-        fields = ['user', 'account_number']
+        fields = ['id', 'user', 'first_name', 'last_name',
+                  'account_number', 'birth_date', 'identity_card_image']
