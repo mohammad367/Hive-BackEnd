@@ -21,15 +21,15 @@ class Advertisement(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     categories = [
-        (1,'general'),
-        (2,'animals'),
-        (3,'medicine'),
-        (4,'education'),
-        (5,'family'),
-        (6,'natural_disaster'),
-        (7,'human_catastrophe'),
-        (8,'businesses'),
-        (9,'environment')
+        ('G','general'),
+        ('A','animals'),
+        ('M','medicine'),
+        ('ED','education'),
+        ('F','family'),
+        ('ND','natural_disaster'),
+        ('HC','human_catastrophe'),
+        ('B','businesses'),
+        ('EN','environment')
     ]
     category = models.CharField(max_length=30,choices=categories, default=1)
     amount = models.FloatField()
