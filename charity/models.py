@@ -1,19 +1,19 @@
 from django.db import models
 # should not import from other apps, use content type instead
-from core.models import User
+from django.conf import settings
 # Create your models here.
 
 
 class DonatorDonate(models.Model):
-    # -> use content type instead of import user from Core App
-    donator = models.ForeignKey(User, on_delete=models.PROTECT)
+    donator = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     account_number = models.CharField(max_length=16)
     birth_date = models.DateField()
     identity_card_number = models.CharField(max_length=10)
-    identity_card_image = models.ImageField()
-    birth_certificate_image = models.ImageField()
+    identity_card_image = models.ImageField(null=True)
+    birth_certificate_image = models.ImageField(null=True)
 
 
 class Advertisement(models.Model):
