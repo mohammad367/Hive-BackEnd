@@ -1,10 +1,9 @@
 from django.db import models
-# should not import from other apps, use content type instead
 from django.conf import settings
 # Create your models here.
 
 
-class DonatorDonate(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
@@ -17,7 +16,7 @@ class DonatorDonate(models.Model):
 
 
 class Advertisement(models.Model):
-    raiser = models.ForeignKey(DonatorDonate, on_delete=models.CASCADE)
+    raiser = models.ForeignKey(Profile, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     categories = [

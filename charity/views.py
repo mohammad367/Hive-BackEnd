@@ -5,7 +5,7 @@ from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import Advertisement, DonatorDonate
+from .models import Advertisement, Profile
 from .serializers import AdvertisementSerializer, UserProfileSerializer
 
 
@@ -14,8 +14,8 @@ class AdvertisementViewSet(ModelViewSet):
     serializer_class = AdvertisementSerializer
 
 
-class DonatorDonateeViewSet(ModelViewSet):
-    queryset = DonatorDonate.objects.all()
+class ProfileViewSet(ModelViewSet):
+    queryset = Profile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.IsAdminUser]
 
@@ -26,7 +26,7 @@ class DonatorDonateeViewSet(ModelViewSet):
     @action(detail=False, methods=['GET', 'PUT'], permission_classes=[permissions.IsAuthenticated])
     def me(self, request: HttpRequest):
 
-        (profile, created) = DonatorDonate.objects.get_or_create(
+        (profile, created) = Profile.objects.get_or_create(
             user_id=request.user.id
         )
         print('hi\n\n\n')

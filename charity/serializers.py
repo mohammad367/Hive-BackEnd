@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from charity.models import Advertisement, DonatorDonate
+from charity.models import Advertisement, Profile
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DonatorDonate
+        model = Profile
         # add all fields included in user profile design
         fields = ['id', 'user', 'first_name', 'last_name',
                   'account_number', 'birth_date', 'identity_card_image']
