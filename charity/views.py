@@ -46,18 +46,18 @@ class ProfileViewSet(mixins.CreateModelMixin,
     #     else:
     #         return [permissions.IsAdminUser()]
 
-    @action(detail=False, methods=['GET', 'PUT'], permission_classes=[permissions.IsAuthenticated])
-    def me(self, request: HttpRequest):
+    # @action(detail=False, methods=['GET', 'PUT'], permission_classes=[permissions.IsAuthenticated])
+    # def me(self, request: HttpRequest):
 
-        (profile, created) = Profile.objects.get_or_create(
-            user_id=request.user.id
-        )
+    #     (profile, created) = Profile.objects.get_or_create(
+    #         user_id=request.user.id
+    #     )
 
-        if request.method == 'GET':
-            serializer = UserProfileSerializer(profile)
-        elif request.method == 'PUT':
-            serializer = UserProfileSerializer(profile, data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
+    #     if request.method == 'GET':
+    #         serializer = UserProfileSerializer(profile)
+    #     elif request.method == 'PUT':
+    #         serializer = UserProfileSerializer(profile, data=request.data)
+    #         serializer.is_valid(raise_exception=True)
+    #         serializer.save()
 
-        return Response(serializer.data)
+    #     return Response(serializer.data)

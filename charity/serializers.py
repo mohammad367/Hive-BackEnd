@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from charity.models import Advertisement, Profile
+from django.conf import settings
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
@@ -19,8 +20,6 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    user = serializers.PrimaryKeyRelatedField(
-        read_only=True)
 
     class Meta:
         model = Profile
