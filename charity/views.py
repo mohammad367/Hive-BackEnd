@@ -35,3 +35,6 @@ class ProfileViewSet(mixins.CreateModelMixin,
                      GenericViewSet):
     queryset = Profile.objects.all()
     serializer_class = UserProfileSerializer
+
+    def get_serializer_context(self):
+        return {'request': self.request}

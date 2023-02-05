@@ -42,10 +42,17 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
+    user_id = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    def create(self, validated_data):
+        user_id = self.context['request'].user.id
+        if Profile.objects.filter(user_id=user_id).exists():
+            raise serializers.ValidationError('this user has profile')
+
+        return Profile.objects.create(user_id=user_id, **validated_data)
 
     class Meta:
         model = Profile
         # add all fields included in user profile design
-        fields = ['id', 'user', 'first_name', 'last_name',
+        fields = ['id', 'user_id', 'first_name', 'last_name',
                   'account_number', 'birth_date', 'identity_card_image']
-        read_only = ['user']
