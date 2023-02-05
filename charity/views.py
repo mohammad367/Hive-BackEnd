@@ -14,16 +14,18 @@ class AdvertisementViewSet(ModelViewSet):
     serializer_class = AdvertisementSerializer
 
     def get_serializer_context(self):
-        request = self.request
-        user_id = request.user.id
-        try:
-            raiser_id = Profile.objects.get(user_id=user_id)
-            print('\n\n\n')
-            print(raiser_id)
-            print('\n\n\n')
-        except:
-            pass
-        return {"raiser_id": raiser_id}
+        return {"request": self.request}
+    # def get_serializer_context(self):
+    #     request = self.request
+    #     user_id = request.user.id
+    #     try:
+    #         raiser_id = Profile.objects.get(user_id=user_id)
+    #         print('\n\n\n')
+    #         print(raiser_id)
+    #         print('\n\n\n')
+    #     except:
+    #         pass
+    #     return {"raiser_id": raiser_id}
 
 
 class ProfileViewSet(mixins.CreateModelMixin,
@@ -33,7 +35,7 @@ class ProfileViewSet(mixins.CreateModelMixin,
                      GenericViewSet):
     queryset = Profile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]
 
     def get_serializer_context(self):
         return {"user_id": self.request.user.id}
@@ -46,18 +48,18 @@ class ProfileViewSet(mixins.CreateModelMixin,
     #     else:
     #         return [permissions.IsAdminUser()]
 
-    # @action(detail=False, methods=['GET', 'PUT'], permission_classes=[permissions.IsAuthenticated])
-    # def me(self, request: HttpRequest):
+    @action(detail=False, methods=['GET', 'PUT', 'POST'], permission_classes=[permissions.IsAuthenticated])
+    def me(self, request: HttpRequest):
 
-    #     (profile, created) = Profile.objects.get_or_create(
-    #         user_id=request.user.id
-    #     )
+        (profile, created) = Profile.objects.get_or_create(
+            user_id=request.user.id
+        )
 
-    #     if request.method == 'GET':
-    #         serializer = UserProfileSerializer(profile)
-    #     elif request.method == 'PUT':
-    #         serializer = UserProfileSerializer(profile, data=request.data)
-    #         serializer.is_valid(raise_exception=True)
-    #         serializer.save()
+        if request.method == 'GET':
+            serializer = UserProfileSerializer(profile)
+        elif request.method == 'PUT':
+            serializer = UserProfileSerializer(profile, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
 
-    #     return Response(serializer.data)
+        return Response(serializer.data)
