@@ -5,24 +5,31 @@ from rest_framework import mixins, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import Advertisement, Profile
-from .serializers import AdvertisementSerializer, UserProfileSerializer
+from .serializers import AdvertisementSerializer, UserProfileSerializer, AdvertisementCreateSerializer
 
 
 class AdvertisementViewSet(ModelViewSet):
     queryset = Advertisement.objects.all()
-    serializer_class = AdvertisementSerializer
+    # serializer_class = AdvertisementSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return AdvertisementCreateSerializer
+        elif self.request.method == 'GET':
+            return AdvertisementSerializer
 
     def get_serializer_context(self):
+
         request = self.request
         user_id = request.user.id
         try:
             raiser_id = Profile.objects.get(user_id=user_id)
             print('\n\n\n')
-            print(raiser_id)
+            print(raiser_id, 'hi')
             print('\n\n\n')
         except:
             pass
-        return {"raiser_id": raiser_id}
+        return {"request": self.request}
 
 
 class ProfileViewSet(mixins.CreateModelMixin,

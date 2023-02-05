@@ -14,30 +14,39 @@ class UserBasicSerializer(serializers.ModelSerializer):
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advertisement
+        fields = ['raiser_id', 'title', 'description',
+                  'amount', 'collected_amount', 'category']
+
+
+class AdvertisementCreateSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(
         read_only=True)
-
-    raiser_id = serializers.ReadOnlyField(source='profile.username')
-
-    # raiser_id = serializers.UUIDField(read_only=True)
-    # raiser = UserBasicSerializer(read_only=True)
-    # print('\n\n\nhi\n\n\n')
-
-    # def get_raiser_id(self):
-    #     print('hi\n\n\n\n')
-    #     return self.context['raiser_id']
-    # raiser = serializers.PrimaryKeyRelatedField(read_only=True)
-    # def get_raiser_id(self, advetisement):
-    #     print('\n\n\n\n\n')
-    #     user_id = self.context['request'].user.id
-    #     print(user_id)
-    #     print('\n\n')
-    #     return user_id
+    raiser_id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Advertisement
-        fields = ['id', 'title', 'raiser_id',
+        fields = ['id', 'title', 'raiser_id', 'category',
                   'description', 'amount', 'collected_amount']
+
+    def create(self, validated_data):
+        user_id = self.context['request'].user.id
+        # try:
+        raiser_id = (Profile.objects.get(user_id=user_id).id)
+        # raiser_id =
+        # except:
+        # pass
+        # raise serializers.ValidationError(
+        #     'this user does not has profile')
+        print('\n\n', raiser_id)
+        return Advertisement.objects.create(raiser_id=raiser_id, **validated_data)
+
+
+class ProfileIdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['raiser_id']
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
