@@ -35,31 +35,3 @@ class ProfileViewSet(mixins.CreateModelMixin,
                      GenericViewSet):
     queryset = Profile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [permissions.IsAdminUser]
-
-    def get_serializer_context(self):
-        return {"user_id": self.request.user.id}
-
-    # def get_permissions(self):
-    #     if self.request.method in permissions.SAFE_METHODS:
-    #         return [permissions.IsAuthenticated()]
-    #     elif self.request.method == 'POST':
-    #         return [permissions.IsAuthenticated()]
-    #     else:
-    #         return [permissions.IsAdminUser()]
-
-    @action(detail=False, methods=['GET', 'PUT', 'POST'], permission_classes=[permissions.IsAuthenticated])
-    def me(self, request: HttpRequest):
-
-        (profile, created) = Profile.objects.get_or_create(
-            user_id=request.user.id
-        )
-
-        if request.method == 'GET':
-            serializer = UserProfileSerializer(profile)
-        elif request.method == 'PUT':
-            serializer = UserProfileSerializer(profile, data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-
-        return Response(serializer.data)
