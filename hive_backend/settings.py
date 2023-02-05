@@ -151,11 +151,11 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    # 'PASSWORD_RESET_CONFIRM_URL': '{uid}/{token}',
-    # 'PASSWORD_RESET_CONFIRM_RETYPE': True,
-    # 'SEND_ACTIVATION_EMAIL': True,
-    # 'SEND_CONFIRMATION_EMAIL': True,
-    # 'ACTIVATION_URL': '{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': '{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'ACTIVATION_URL': '{uid}/{token}',
 
     'SERIALIZERS': {
         'user_create': 'core.serializers.UserCreateSerializer',
