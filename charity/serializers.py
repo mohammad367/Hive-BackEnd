@@ -3,7 +3,7 @@ from charity.models import Advertisement, DonatorDonate
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
-
+    image_url = serializers.ImageField(required=False)
     class Meta:
         model = Advertisement
         fields = ['raiser', 'title', 'description',
