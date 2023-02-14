@@ -13,7 +13,7 @@ class Profile(models.Model):
     account_number = models.CharField(max_length=16)
     birth_date = models.DateField()
     identity_card_number = models.CharField(max_length=10)
-    identity_card_image = models.ImageField(null=True)
+    identity_card_image = models.ImageField(null=True, blank=True)
     birth_certificate_image = models.ImageField(null=True, blank=True)
 
 
@@ -35,3 +35,4 @@ class Advertisement(models.Model):
     category = models.CharField(max_length=30, choices=categories, default=1)
     amount = models.FloatField()
     collected_amount = models.FloatField()
+    # image = models.ImageField(null=True, blank=True)
