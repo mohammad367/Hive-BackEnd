@@ -35,4 +35,4 @@ class Advertisement(models.Model):
     category = models.CharField(max_length=30, choices=categories, default=1)
     amount = models.FloatField()
     collected_amount = models.FloatField()
-    # image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
