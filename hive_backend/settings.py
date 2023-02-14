@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'hive_backend.urls'
@@ -167,21 +167,21 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'reset_password/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'SEND_ACTIVATION_EMAIL': True,
     'SEND_CONFIRMATION_EMAIL': True,
-    'ACTIVATION_URL': '{uid}/{token}',
+    'ACTIVATION_URL': 'activation/{uid}/{token}',
 
     'SERIALIZERS': {
         'user_create': 'core.serializers.UserCreateSerializer',
     }
 }
 
-ALLOWED_HOSTS=['*']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
-# DOMAIN = config('DOMAIN')
+DOMAIN = 'http://localhost:3000'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
