@@ -22,17 +22,5 @@ class Advertisement(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to = 'ads/', null = True , blank = True)
-    categories = [
-        ('G','general'),
-        ('A','animals'),
-        ('M','medicine'),
-        ('ED','education'),
-        ('F','family'),
-        ('ND','natural_disaster'),
-        ('HC','human_catastrophe'),
-        ('B','businesses'),
-        ('EN','environment')
-    ]
-    category = models.CharField(max_length=30,choices=categories, default=1)
     amount = models.FloatField()
-    collected_amount = models.FloatField()
+
